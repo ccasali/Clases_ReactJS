@@ -1,15 +1,21 @@
-import { Children } from "react";
+import { useRef } from "react";
+import NavBar from "../components/Navbar/NavBar";
 
-const MainLayout = () => {
+const MainLayout = ({children}) => {
+    const footerDivRef = useRef();
+
+    const handleClick = () => {
+        footerDivRef.current.innerHTML = "Footer Content Reference";
+        footerDivRef.current.setAttribute("class", "footer-new");
+    };
 
     return (
+        
         <div>
-            <div>
-                <NavBar/>
-                {Children}
-                </div>
-            {/* componente dinámicos vayan aquí */}
-            <div>footer</div> 
+            <NavBar/>
+            {children}
+            <div ref={footerDivRef}>footer</div>
+            <button onClick={handleClick}>Click</button>
         </div>
     )
 };
